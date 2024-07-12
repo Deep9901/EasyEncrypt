@@ -4,12 +4,11 @@
 #include <iterator>
 #include <string>
 
-
 bool performCaesarCipher(std::string &content, bool encrypt)
 {
     std::int shift = encrypt ? 3 : -3;
 
-    for (std::char &ch: content)
+    for (std::char &ch : content)
     {
         if (isalpha(ch))
         {
@@ -32,12 +31,21 @@ bool encryptFile(const std::string &filename, bool encrypt)
 
     // Read the content of the file
     std::string content(istreambuf_iterator<char>(inFile), {})
-    inFile.close();
+        inFile.close();
 
-    if (performCaesarCipher(content, encrypt)) 
+    if (performCaesarCipher(content, encrypt))
     {
+        // Creating an output file and writing the modified content
+        std::ofstream outFile(encrypt ? "encrypted_" + filename : "decrypte_" + filename);
+        if (!outFile)
+        {
+            return false;
+        }
 
+        outFile << content;
+
+        outFile.close();
+
+        return true;
     }
 }
-
- 
