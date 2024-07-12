@@ -3,16 +3,17 @@
 #include <cctype>
 #include <iterator>
 #include <string>
+#include <iostream>
 
 bool performCaesarCipher(std::string &content, bool encrypt)
 {
-    std::int shift = encrypt ? 3 : -3;
+    int shift = encrypt ? 3 : -3;
 
-    for (std::char &ch : content)
+    for (char &ch : content)
     {
         if (isalpha(ch))
         {
-            std::char base = isupper(ch) ? 'A' : 'B';
+            char base = isupper(ch) ? 'A' : 'B';
             ch = static_cast<char>((ch - base + shift + 26) % 26 + base);
         }
 
@@ -30,8 +31,8 @@ bool encryptFile(const std::string &filename, bool encrypt)
     }
 
     // Read the content of the file
-    std::string content(istreambuf_iterator<char>(inFile), {})
-        inFile.close();
+    std::string content(std::istreambuf_iterator<char>(inFile), {});
+    inFile.close();
 
     if (performCaesarCipher(content, encrypt))
     {

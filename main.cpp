@@ -4,10 +4,10 @@
 int main()
 {
     std::string filename;
-    std::char mode;
+    char mode;
 
     std::cout << "Enter the filename: ";
-    getline(cin >> std::ws, filename);
+    getline(std::cin >> std::ws, filename);
     std::cout << "Encrypt (e) or Decrypt (d) ";
     std::cin >> mode;
 
@@ -15,27 +15,27 @@ int main()
     {
         if (encryptFile(filename, true))
         {
-            std::cout << "Encryption completed successfully." << endl;
+            std::cout << "Encryption completed successfully." << std::endl;
         }
         else
         {
-            std::cerr << "Error: unable to perform encryption." << endl;
+            std::cerr << "Error: unable to perform encryption." << std::endl;
         }
     }
     else if (mode == 'd' || mode == 'D')
     {
         if (encryptFile(filename, false))
         {
-            std::cout << "Decryption completed successfully" << endl;
+            std::cout << "Decryption completed successfully" << std::endl;
         }
         else
         {
-            std::cerr << "Error: unable to perform decryption." << endl;
+            std::cerr << "Error: unable to perform decryption." << std::endl;
         }
     }
     else
     {
-        std::cerr << "Invalid mode selected. Use 'e' for encryption and 'd' for decryption." << endl;
+        std::cerr << "Invalid mode selected. Use 'e' for encryption and 'd' for decryption." << std::endl;
     }
     return 0;
 }
